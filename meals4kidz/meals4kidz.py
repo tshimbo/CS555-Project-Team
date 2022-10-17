@@ -7,7 +7,7 @@ import unittest
 
 #-------------------------------------------------------------------------------
 
-
+#Example dictionaries for testing purposes
 
 recipesValid = {
         'Rice paper wraps': '1 carrot, 1 avocado, 1/2 cucumber, 8 mint leaves, 50g rice vermicelli noodles',
@@ -18,6 +18,10 @@ recipesValid = {
 testRecipe = {
         'Rice paper wraps': '1 carrot'
 }
+
+
+#----------------------------------------------------------------------------------------------------
+
 
 def checkValidMeal(meal): #checking that a meal cannot be a number
     if meal.isnumeric():
