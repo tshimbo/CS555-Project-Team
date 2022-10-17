@@ -106,13 +106,41 @@ def validAllergy(allergy):
     return valid
 
 
+#_____________________________________________________________
+
+# Maksym Perozhak Contribution
+
+# Story Name: Choose Age
+# Sprint 1 Task 1: Identify the age of the user
+# Sprint 1 Task 2: Identeify if age of user old enough for app authorization
+# Sprint 1 Task 3: Identeify if age of user is valid
+
+#_____________________________________________________________
+
+from datetime import datetime, date
+ 
+def checkValidUserAge(birthdate):
+    today = date.today()
+    #birthdate = datetime.fromisoformat(input("Enter Your Birthdate in YYYY-MM-DD Format: "))
+    age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+    if age >= 18:
+        return ("User Age Verified!")
+    elif age < 18 & age > 0:
+        return ("Sorry, you are not eligable")
+    elif age <= 0:
+        return ("Please Enter A Valid Date")
+    else:
+        return ("Please Enter Your Birthdate in YYYY-MM-DD Format")
 
 
 
 #--------------------------------------
 #Testing functions
 class Test(unittest.TestCase):
-    
+    def test_checkValidUserAge(self):
+        print(checkValidUserAge(date(2000, 10, 10)))
+        print(checkValidUserAge(date(2030, 1, 1)))
+
     def test_checkValidMeal(self):
         self.assertTrue(checkValidMeal('omelette'), 'omelette')
         self.assertFalse(checkValidMeal('123'), '123')
@@ -125,9 +153,7 @@ class Test(unittest.TestCase):
         self.assertTrue(validAllergy("soy"), "soy")
         self.assertFalse(validAllergy("555"), "fish")
 
-
-
-
 if __name__ == '__main__':
     unittest.main()
-    
+
+
