@@ -7,7 +7,7 @@
 ##############################################################
 import unittest
 
-commonAllergies = ['dairy', 'fish', 'shellfish',
+commonAllergies = ['dairy', 'egg', 'fish', 'shellfish',
                    'tree nuts', 'peanuts', 'wheat', 'soy']
 
 
