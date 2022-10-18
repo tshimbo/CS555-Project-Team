@@ -215,3 +215,46 @@ class Test(unittest.TestCase):
 
 if __name__=='__main__':
     unittest.main()
+
+#----------------------------------------------------------------------------------------------------------------------------
+#Michael Moreno
+#Story Name: Nutrition facts
+
+#Task 1: Define the dish
+#Task 2: retrieve ingredient list and assign caloric values to ingredients
+#Task 3: calculate total calories as sum of ingredients
+import unittest
+
+#define dish
+#retrieve ingredient list and assign caloric values to ingredients
+#arbitrary values for ingredients
+oatmeal = {
+    'oats': 100,
+    'milk': 500,
+    'sugar': 200,
+    'strawberries': 150}
+
+#calculate calorie total by adding caloric values of ingredients
+def CalcCals():
+    while True:
+        try:recipe= str(input("Please enter your desired dish"))
+        except ValueError:
+            print("Please enter a string")
+            continue
+        else:
+            if recipe=='oatmeal':
+                print(sum.oatmeal)
+                break
+    return CalcCals
+
+CalcCals()
+
+class Test(unittest.TestCase):
+
+    def test_CalcCals(self):
+        self.assertEqual(CalcCals, 950)
+        self.assertEqual(CalcCals, 1000)
+        self.assertEqual(CalcCals, 0)
+       
+if __name__ == '__main__':
+    unittest.main()
