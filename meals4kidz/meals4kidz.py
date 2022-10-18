@@ -110,7 +110,7 @@ def validAllergy(allergy):
 # Story Name: Choose Age
 # Sprint 1 Task 1: Identify the age of the user
 # Sprint 1 Task 2: Identify if age of user old enough for app authorization
-# Sprint 1 Task 3: Identeify if age of user is valid
+# Sprint 1 Task 3: Identify if age of user is valid
 
 #_____________________________________________________________
 
