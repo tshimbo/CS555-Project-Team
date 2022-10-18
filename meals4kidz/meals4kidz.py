@@ -156,4 +156,62 @@ class Test(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
 
+#_______________________________________________________________________________________________
 
+import unittest
+#Pratik Kadam contribution
+#Story name: Find recipes
+#Task 1 : Define the dishes
+#Task 2: Define the ingredients of the respective dishes
+#Task 3: Ask the user to choose their desired dish
+
+dishes=['chicken','oatmeal','bagel','omlette','breadtoast']
+chicken=['salt','pepper','chicken breast']
+oatmeal=['oats','milk','berries','nuts','fruits']
+bagel=['bagel','creamcheese']
+omlette=['eggs','salt','tomato','oregano']
+breadtoast=['bread','butter']
+
+def validRecipes():
+    while True:
+        try:
+            print(f"{dishes}")
+            x= str(input("Select the dish of your choice: ")) #taking input from user for the choice of dish
+        except ValueError:
+            print("Please enter a string")
+            continue
+        else:
+            if(x=='chicken'):
+                print(f"{chicken}")
+                break
+            elif(x=='oatmeal'):
+                print(f"{oatmeal}")
+                break
+            elif(x=='bagel'):
+                print(f"{bagel}")
+                break
+            elif(x=='omlette'):
+                print(f"{omlette}")
+                break
+            elif(x=='breadtoast'):
+                print(f"{breadtoast}")
+                break
+            else:
+                print('Please enter valid dish')
+                continue
+    return validRecipes
+
+validRecipes()
+
+class Test(unittest.TestCase):
+
+    def test_ValidRecipes(self):
+        self.assertTrue(validRecipes('chicken'), 'chicken')
+        self.assertTrue(validRecipes('oatmeal'), 'oatmeal')
+        self.assertTrue(validRecipes('bagel'), 'bagel')
+        self.assertTrue(validRecipes('omlette'), 'omlette')
+        self.assertTrue(validRecipes('breadtoast'), 'breadtoast')
+        self.assertFalse(validRecipes('123'), '123')
+
+if __name__=='__main__':
+    unittest.main()
