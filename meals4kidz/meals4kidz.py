@@ -125,7 +125,7 @@ def checkValidUserAge(birthdate):
     age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
     if age >= 18:
         return ("User Age Verified!")
-    elif age < 18 & age > 0:
+    elif age < 18 and age > 0:
         return ("Sorry, you are not eligable")
     elif age <= 0:
         return ("Please Enter A Valid Date")
@@ -138,8 +138,11 @@ def checkValidUserAge(birthdate):
 #Testing functions
 class Test(unittest.TestCase):
     def test_checkValidUserAge(self):
+        print("\n")
         print(checkValidUserAge(date(2000, 10, 10)))
+        print(checkValidUserAge(date(2010, 1, 1)))
         print(checkValidUserAge(date(2030, 1, 1)))
+        print("\n")
 
     def test_checkValidMeal(self):
         self.assertTrue(checkValidMeal('omelette'), 'omelette')
