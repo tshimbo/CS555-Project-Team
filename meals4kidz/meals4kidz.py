@@ -1,3 +1,4 @@
+import re
 import unittest
 #Terry Shim Contribution
 #Story Name:  View measurements
@@ -5,18 +6,36 @@ import unittest
 #Task 2: Print measurements of recipe
 #Task 3: Recipe meal cannot be a number
 
+#Sprint 2 Tasks
+#Task 4: Must be at least one ingredient per recipe
+#Task 5: Recipe must be valid string for ingredient (not a number)
+#Task 6: Must have at lease one recipe
+
+
 #-------------------------------------------------------------------------------
 
 #Example dictionaries for testing purposes
 
 recipesValid = {
-        'Rice paper wraps': '1 carrot, 1 avocado, 1/2 cucumber, 8 mint leaves, 50g rice vermicelli noodles',
-        'Spinach savoury muffins': '200g fresh spinach, 100g cheddar, 1 tbsp dried thyme, 2 eggs',
+        'Rice paper wraps': '1 carrot, 1 avocado, 1/2 cucumber, 8 mint leaves, 50 grams rice vermicelli noodles',
+        'Spinach savoury muffins': '200 g fresh spinach, 100g cheddar, 1 tbsp dried thyme, 2 eggs',
         'Omelette': '1 knob of butter, 1 tomato deseeded and diced, 1 tsp dried oregano',
     }
 
 testRecipe = {
         'Rice paper wraps': '1 carrot'
+}
+
+recipesInvalidEmptyCase = {
+}
+
+
+recipesInvalidNoIngredients= {
+    'Rice paper wraps'
+}
+
+recipesInvalidIngredient = {
+       'Rice paper wraps': 123
 }
 
 
@@ -28,11 +47,30 @@ def checkValidMeal(meal): #checking that a meal cannot be a number
         return False
     else:
         return True
+def checkValidRecipe(recipes): #checking that a recipe is valid
+    if len(recipes.values()) < 1:
+        raise ValueError('Recipe must have at least one ingredient')
+    if len(recipes.keys()) < 1:
+         raise KeyError('No recipes found')
+    for ingredients in recipes.values():
+        if ingredients[0].isdigit() :
+            return True
+        else:
+            return False
+    for recipe in recipes.keys():
+        if isinstance(recipe[0], str):
+            return True
+        else:
+            return False 
+        
+    return True
+        
 
 def measurementList(recipes, meal): #parse through a dictionary of recipes in order to find the measurements of the ingredients
     try:
         # Iterating over values
         assert checkValidMeal(meal) == True   #error checking
+        assert checkValidRecipe(recipes) == True 
         print('Measurements of: ' + str(meal) + '\n') #specify which meal you are taking from
         for meal, ingredient in recipes.items():   #iterate through the recipes to find the correct one 
            
@@ -144,10 +182,19 @@ class Test(unittest.TestCase):
     def test_checkValidMeal(self):
         self.assertTrue(checkValidMeal('omelette'), 'omelette')
         self.assertFalse(checkValidMeal('123'), '123')
-
+    
+    def test_checkValidRecipe(self):
+        self.assertTrue(checkValidRecipe(recipesValid))
+        with self.assertRaises(ValueError):
+            checkValidRecipe(recipesInvalidEmptyCase)
+        with self.assertRaises(AttributeError):   
+            checkValidRecipe(recipesInvalidNoIngredients)
+        with self.assertRaises(TypeError):
+            checkValidRecipe(recipesInvalidIngredient)
+        
     def test_measurementList(self):
         self.assertFalse(measurementList(recipesValid,'Omelette'), "432")
-       
+
     def test_validAllergy(self):
         self.assertTrue(validAllergy("fish"), "fish")
         self.assertTrue(validAllergy("soy"), "soy")
