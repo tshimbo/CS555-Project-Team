@@ -9,7 +9,7 @@ import unittest
 #Sprint 2 Tasks
 #Task 4: Must be at least one ingredient per recipe
 #Task 5: Recipe must be valid string for ingredient (not a number)
-#Task 6: Must have at lease one recipe
+#Task 6: Must have at least one recipe
 
 
 #-------------------------------------------------------------------------------
