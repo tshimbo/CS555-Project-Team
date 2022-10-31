@@ -195,6 +195,7 @@ def allergies():
 
 # Maksym Perozhak Contribution
 
+# Sprint 1
 # Story Name: Choose Age
 # Sprint 1 Task 1: Identify the age of the user
 # Sprint 1 Task 2: Identify if age of user old enough for app authorization
@@ -217,6 +218,39 @@ def checkValidUserAge(birthdate):
     else:
         return ("Please Enter Your Birthdate in YYYY-MM-DD Format")
 
+#_____________________________________________________________
+
+# Sprint 2
+# Story Name: Choose Age
+# Sprint 2 Task 1: Identify the age of the child
+# Sprint 2 Task 2: Identify what age range category diet the child belongs to
+# Sprint 2 Task 3: Identify if age of the child is valid
+
+#_____________________________________________________________
+
+def childAge(birthdate):
+    dietRange = ""
+    today = date.today()
+    #birthdate = datetime.fromisoformat(input("Enter Your Birthdate in YYYY-MM-DD Format: "))
+    age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+    if age < 1:
+        dietRange = "baby"
+        return("Your child is less than a year old \n Reccomended Diet For: Baby")
+    elif age < 4 and age >= 1:
+        dietRange = "toddler"
+        return("Your child is " + str(age) + " years old \n Reccomended Diet For: Toddler")
+    elif age < 12 and age >= 4:
+        dietRange = "young"
+        return ("Your child is " + str(age) + " years old \n Reccomended Diet For: Young Child")
+    elif age < 18 and age >= 12:
+        dietRange = "teen"
+        return("Your child is " + str(age) + " years old \n Reccomended Diet For: Teen")
+    elif age >= 18:
+        dietRange = "adult"
+        return ("Your child is 18 years old or older and should be considered for adult diets")
+    else:
+        return ("Please Enter Your Birthdate in YYYY-MM-DD Format")
+
 
 
 #--------------------------------------
@@ -227,6 +261,15 @@ class Test(unittest.TestCase):
         print(checkValidUserAge(date(2000, 10, 10)))
         print(checkValidUserAge(date(2010, 1, 1)))
         print(checkValidUserAge(date(2030, 1, 1)))
+        print("\n")
+    
+    def test_childAge(self):
+        print("\n")
+        print(childAge(date(2002, 1, 1)))
+        print(childAge(date(2008, 1, 1)))
+        print(childAge(date(2014, 1, 1)))
+        print(childAge(date(2019, 1, 1)))
+        print(childAge(date(2022, 1, 1)))
         print("\n")
 
     def test_checkValidMeal(self):
