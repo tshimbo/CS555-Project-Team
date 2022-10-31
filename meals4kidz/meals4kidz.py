@@ -365,27 +365,87 @@ if __name__=='__main__':
 #Task 3: calculate total calories as sum of ingredients
 import unittest
 
+#Sprint 2
+#Task 1: display list of recipes instead of asking for input
+#Task 2: add more recipes
+#Task 3: make sure a valid dish is entered
+
 #define dish
 #retrieve ingredient list and assign caloric values to ingredients
 #arbitrary values for ingredients
+recipe_list = ['oatmeal', 'parfait', 'acai', 'pancakes', 'waffles', 'omelette']
+
 oatmeal = {
     'oats': 100,
     'milk': 500,
     'sugar': 200,
     'strawberries': 150}
 
+parfait = {
+    'yogurt': 300,
+    'strawberries': 100,
+    'blueberries': 150,
+    'granola': 100}
+
+acai = {
+    'acai puree': 200,
+    'bananas': 150,
+    'strawberries': 150,
+    'blueberries': 150,
+    'granola': 100,
+    'kiwi': 100
+    }
+
+pancakes = {
+    'pancakes': 400,
+    'syrup': 150,
+    'bananas': 100
+    }
+
+waffles = {
+    'waffles': 400,
+    'syrup': 150,
+    'sugar': 200,
+    'strawberries': 200
+    }
+
+omelette = {
+    'eggs': 500,
+    'tomatoes': 100,
+    'ham': 300,
+    'salt': 100,
+    'pepper': 100,
+    }
+
 #calculate calorie total by adding caloric values of ingredients
 def CalcCals():
+    print(recipe_list)
     while True:
-        try:recipe= str(input("Please enter your desired dish"))
+        try:recipe= str(input("Please choose a recipe from the list: "))
         except ValueError:
             print("Please enter a string")
             continue
         else:
             if recipe=='oatmeal':
-                print(sum.oatmeal)
+                print(sum(oatmeal.values()), 'Calories')
                 break
-    return CalcCals
+            elif recipe=='parfait':
+                print(sum(parfait.values()), 'Calories')
+                break
+            elif recipe=='acai':
+                print(sum(acai.values()), 'Calories')
+                break
+            elif recipe=='pancakes':
+                print(sum(pancakes.values()), 'Calories')
+                break
+            elif recipe=='waffles':
+                print(sum(waffles.values()), 'Calories')
+                break
+            elif recipe=='omelette':
+                print(sum(omelette.values()), 'Calories')
+                break
+            else: print('please enter a valid dish.')
+            continue
 
 CalcCals()
 
