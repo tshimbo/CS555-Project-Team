@@ -86,14 +86,22 @@ def measurementList(recipes, meal): #parse through a dictionary of recipes in or
 #############################################################
 # Ryan Lee Contribution
 # Story Name: Allergies
+#
+# Sprint #1:
 # Task 1: Ask user if child has allergies
 # Task 2: Ask user to input child's allergy
 # Task 3: Check if child's allergy is a valid
+#
+# Sprint #2:
+# Task 4: Check if child's allergy was already added
+# Task 5: Ask user if child has another allergy
+# Task 6: Get list of child's allergies
 ##############################################################
 import unittest
 
-commonAllergies = ['dairy', 'fish', 'shellfish',
+commonAllergies = ['dairy', 'eggs', 'fish', 'shellfish',
                    'tree nuts', 'peanuts', 'wheat', 'soy']
+allergyList = []
 
 
 # ask user if child has allergies
@@ -132,13 +140,55 @@ def getAllergy():
     return allergy
 
 
-# check if allergy is valid
+# check if allergy is valid or is already added
 def validAllergy(allergy):
     valid = True
     if (allergy not in commonAllergies):
         print("This is not a valid allergy")
         valid = False
+    if (allergy in allergyList):
+        print("You've already added this allergy")
+        valid = False
     return valid
+
+
+# ask user if child has another allergy
+def anotherAllergy():
+    while True:
+        try:
+            x = str(input("Does your child have another allergy? (y/n): "))
+        except ValueError:
+            print("Please enter a string")
+            continue
+        else:
+            if (x == 'y'):
+                another = True
+                break
+            elif (x == 'n'):
+                another = False
+                break
+            else:
+                print('Please enter y for yes or n for no.')
+                continue
+    return another
+
+
+# get list of child's allergies (our main function)
+def allergies():
+    if not haveAllergy():
+        return
+    allergy = getAllergy()
+    while not validAllergy(allergy):
+        allergy = getAllergy()
+    if validAllergy(allergy):
+        allergyList.append(allergy)
+    while anotherAllergy():
+        allergy = getAllergy()
+        while not validAllergy(allergy):
+            allergy = getAllergy()
+        if validAllergy(allergy):
+            allergyList.append(allergy)
+    return allergyList
 
 
 #_____________________________________________________________
