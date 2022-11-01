@@ -299,6 +299,7 @@ if __name__ == '__main__':
 #_______________________________________________________________________________________________
 
 import unittest
+#Sprint 1
 #Pratik Kadam contribution
 #Story name: Find recipes
 #Task 1 : Define the dishes
@@ -355,6 +356,59 @@ class Test(unittest.TestCase):
 
 if __name__=='__main__':
     unittest.main()
+
+#____________________________________________________________________________________________________________________________
+#Sprint 2
+#Pratik Kadam contribution
+#Story name : Encryption
+#Task 1: Ask the user to create username and password.
+#Task 2: Ask the user to enter the created username and password for login.
+#Task 3: To check if the entered credentials match and display the recipes.
+
+import unittest
+
+def register():
+    Username=str(input("Create username: "))
+    Password=str(input("Create password: "))
+    Password1=str(input("Confirm password: "))
+
+    if Password != Password1:
+        print("Password donot match, please retry")
+        register()
+    else:
+        if len(Password)<=10 or len(Password)>=16:
+            print("Password not in range, please restart")
+            register()
+        elif len(Username)<=5 or len(Username)>=11:
+            print("Username not in range, please restart")
+            register() 
+        else:
+            print("Success!")
+            creddict={"Username":Username, "Password":Password}
+            
+            def login():
+                Username1=str(input("Enter username:"))
+                Password2=str(input("Enter password:"))
+                if Username1!=Username or Password2!=Password:
+                    print("Wrong credentials, retry")
+                    login()
+                elif Username1==Username and Password2==Password:
+                    print("Logging in!")
+                    from recipes import validRecipes
+            login()
+
+register()
+
+class Test(unittest.TestCase):
+
+    def test_Register(self):
+        self.assertEqual(register(''), 'Empty')
+        self.assertEqual(register('Happyhalloween2022'), 'Out of range')
+
+if __name__=='__main__':
+    print("Running unit tests")
+    unittest.main() 
+
 
 #----------------------------------------------------------------------------------------------------------------------------
 #Michael Moreno
