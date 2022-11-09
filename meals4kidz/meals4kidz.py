@@ -11,6 +11,11 @@ import unittest
 #Task 5: Recipe must be valid string for ingredient (not a number)
 #Task 6: Must have at least one recipe
 
+#Sprint 3 Tasks
+#Task 1: ask user to choose specific ingredients for likes
+#Task 2: make sure ingredient is valid 
+#Task 3: append to list of wanted ingredients
+
 
 #-------------------------------------------------------------------------------
 
@@ -37,6 +42,12 @@ recipesInvalidNoIngredients= {
 recipesInvalidIngredient = {
        'Rice paper wraps': 123
 }
+
+
+ingredientList = ['avocado', 'eggs', 'fish', 'tomato',
+                   'peanuts', 'rice', 'spinach', 'broccoli']
+
+preferencesList = [] #list of preferences to append to
 
 
 #----------------------------------------------------------------------------------------------------
