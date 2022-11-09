@@ -116,6 +116,18 @@ def hasFavorite():
                 continue
     return have
 
+# ask user to input ingredients preferences
+def getPreference():
+    while True:
+        try:
+            ingredients = str(input("Enter your child's favorite ingredient: "))
+        except ValueError:
+            print("Please enter a string")
+            continue
+        else:
+            break
+    return ingredients
+
 
 
 #------------------------------------------------------------------------------------------
