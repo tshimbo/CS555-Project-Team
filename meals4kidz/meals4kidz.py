@@ -129,6 +129,55 @@ def getPreference():
     return ingredients
 
 
+# check if ingredient is already added
+def validIngredient(ingredient):
+    valid = True
+    if (ingredient in preferencesList):
+        print("You've already added this allergy")
+        valid = False
+    return valid
+
+
+
+# ask user if child has another favorite ingredient
+def moreIngredient():
+    while True:
+        try:
+            x = str(input("Does your child have another favorite ingredient? (y/n): "))
+        except ValueError:
+            print("Please enter a string")
+            continue
+        else:
+            if (x == 'y'):
+                another = True
+                break
+            elif (x == 'n'):
+                another = False
+                break
+            else:
+                print('Please enter y for yes or n for no.')
+                continue
+    return another
+
+
+# get list of child's favorite ingredients 
+def preferences():
+    if not hasFavorite():
+        return
+    preference = getPreference()
+    while not validIngredient(preference):
+        preference = getPreference()
+    if validIngredient(preference):
+        preferencesList.append(preference)
+    while moreIngredient():
+        preference = getPreference()
+        while not validIngredient(preference):
+            preference = getPreference()
+        if validIngredient(preference):
+            preferencesList.append(preference)
+    return print("Here is a list of preferred ingredients for your child: " + str(preferencesList))
+
+
 
 #------------------------------------------------------------------------------------------
 
