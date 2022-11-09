@@ -91,6 +91,33 @@ def measurementList(recipes, meal): #parse through a dictionary of recipes in or
         raise Exception("Meal cannot be a number!")   #error if the meal is a number
         
 
+
+#-------------------Terry Shim Sprint 3---------------------------------------------------
+
+# ask user if child has favorite ingredients
+def hasFavorite():
+    while True:
+        try:
+            x = str(input("Does your child have favorite ingredients? (y/n): "))
+        except ValueError:
+            print("Please enter a string")
+            continue
+        else:
+            if (x == 'y'):
+                print('Here are some ingredients your child may like: ')
+                print(ingredientList)
+                have = True
+                break
+            elif (x == 'n'):
+                have = False
+                break
+            else:
+                print('Please enter y for yes or n for no.')
+                continue
+    return have
+
+
+
 #------------------------------------------------------------------------------------------
 
 
