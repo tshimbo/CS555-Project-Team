@@ -392,6 +392,16 @@ class Test(unittest.TestCase):
         self.assertTrue(validAllergy("soy"), "soy")
         self.assertFalse(validAllergy("555"), "fish")
 
+    def test_validIngredient(self):
+        print("\n")
+        self.assertTrue(validIngredient("potato"), "potato")
+        self.assertTrue(validIngredient("eggs"), "eggs")
+        self.assertTrue(validIngredient("spinach"), "spinach")
+        self.assertTrue(validIngredient("rice"), "rice")
+        self.assertTrue(validIngredient("tomato"), "tomato")
+        print("\n")
+
+
 if __name__ == '__main__':
     unittest.main()
 
