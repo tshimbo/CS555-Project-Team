@@ -195,6 +195,11 @@ def preferences():
 # Task 4: Check if child's allergy was already added
 # Task 5: Ask user if child has another allergy
 # Task 6: Get list of child's allergies
+#
+# Sprint #3:
+# Task 1: Ask user to input medical information
+# Task 2: Get height
+# Task 3: Get weight
 ##############################################################
 import unittest
 
@@ -289,6 +294,44 @@ def allergies():
             allergyList.append(allergy)
     return allergyList
 
+
+################### Ryan Lee Sprint 3 ########################
+
+# ask user to input medical information
+def getMedInfo():
+    print("Please input your child's height and weight below:")
+    height = getHeight()
+    weight = getWeight()
+    print("Height: " + str(height))
+    print("Weight: " + str(weight))
+
+
+# get weight
+def getWeight():
+    while True:
+        try:
+            weight = float(
+                (input("Enter your child's weight: ")))
+        except ValueError:
+            print("Please enter a number")
+            continue
+        else:
+            break
+    return weight
+
+
+# get height
+def getHeight():
+    while True:
+        try:
+            height = float(
+                (input("Enter your child's height: ")))
+        except ValueError:
+            print("Please enter a number")
+            continue
+        else:
+            break
+    return height
 
 #_____________________________________________________________
 
