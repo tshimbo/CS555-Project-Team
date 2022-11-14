@@ -393,7 +393,46 @@ def childAge(birthdate):
     else:
         return ("Please Enter Your Birthdate in YYYY-MM-DD Format")
 
+#_____________________________________________________________
 
+# Sprint 3
+# Story Name: Track Growth
+# Sprint 3 Task 1: Input the childs age
+# Sprint 3 Task 2: Input the childs weight for each age in a dictionary
+# Sprint 3 Task 3: Save the data to be opened up later to see the childs wieght history
+
+#_____________________________________________________________
+
+
+import json
+
+weights = {}
+
+with open('weightsFile.json') as f:
+    weights = json.load(f)
+
+def addWeight(age, weight):
+    weights[age] = weight
+    return weights
+
+def clearWeight():
+    weights.clear()
+    open('weightsFile.json', 'w').close()
+    
+#print(addWeight(6, 80))
+#print(addWeight(7, 90))
+#print(addWeight(8, 100))
+#clearWeight()
+#print(weights)
+
+def displayWeightHistory():
+    print("{:<10} {:<10}".format('Age', 'Weight'))
+    for key, value in weights.items():
+        weight = value
+        print("{:<10} {:<10}".format(key, weight))
+
+with open('weightsFile.json', 'w') as f:
+    json.dump(weights, f)
 
 #--------------------------------------
 #Testing functions
@@ -404,6 +443,13 @@ class Test(unittest.TestCase):
         print(checkValidUserAge(date(2010, 1, 1)))
         print(checkValidUserAge(date(2030, 1, 1)))
         print("\n")
+
+    def test_checkValidUserAge(self):
+        clearWeight()
+        print(addWeight(6, 80))
+        print(addWeight(7, 90))
+        print(addWeight(8, 100))
+        displayWeightHistory()
     
     def test_childAge(self):
         print("\n")
