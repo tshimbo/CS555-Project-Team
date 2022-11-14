@@ -397,9 +397,9 @@ def childAge(birthdate):
 
 # Sprint 3
 # Story Name: Track Growth
-# Sprint 3 Task 1: Input the childs age
-# Sprint 3 Task 2: Input the childs weight for each age in a dictionary
-# Sprint 3 Task 3: Save the data to be opened up later to see the childs wieght history
+# Sprint 3 Task 1: Input the child's age
+# Sprint 3 Task 2: Input the child's weight for each age in a dictionary
+# Sprint 3 Task 3: Save the data to be opened up later to see the childs weight history
 
 #_____________________________________________________________
 
