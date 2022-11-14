@@ -418,12 +418,6 @@ def addWeight(age, weight):
 def clearWeight():
     weights.clear()
     open('weightsFile.json', 'w').close()
-    
-#print(addWeight(6, 80))
-#print(addWeight(7, 90))
-#print(addWeight(8, 100))
-#clearWeight()
-#print(weights)
 
 def displayWeightHistory():
     print("{:<10} {:<10}".format('Age', 'Weight'))
