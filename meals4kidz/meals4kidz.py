@@ -438,7 +438,7 @@ class Test(unittest.TestCase):
         print(checkValidUserAge(date(2030, 1, 1)))
         print("\n")
 
-    def test_checkValidUserAge(self):
+    def test_checkWeightHistory(self):
         clearWeight()
         print(addWeight(6, 80))
         print(addWeight(7, 90))
