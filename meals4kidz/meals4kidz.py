@@ -748,3 +748,74 @@ class Test(unittest.TestCase):
        
 if __name__ == '__main__':
     unittest.main()
+
+#----------------------------------------------------------------------------------------------------------------------------
+#Kevin Liao Contribution
+#Story Name: Recipe Preferences
+#Sprint 3 Tasks
+#Task 1: Allow users to save recipes
+#Task 2: Find if the saved recipes contain preferred ingredients
+#Task 3: Print recipes which have half of their ingredients as preferred ingredients
+
+import unittest
+
+ingredientList = ['avocado', 'eggs', 'fish', 'tomato',
+                   'peanuts', 'rice', 'spinach', 'broccoli']
+
+preferencesList = ["carrot", "avocado", "cucumber", "mint leaves", "spinach", "cheddar"]
+
+recipesValid = {
+        'Rice paper wraps': '1 carrot, 1 avocado, 1/2 cucumber, 8 mint leaves, 50 grams rice vermicelli noodles',
+        'Spinach savoury muffins': '200 g fresh spinach, 100g cheddar, 1 tbsp dried thyme, 2 eggs',
+        'Omelette': '1 knob of butter, 1 tomato deseeded and diced, 1 tsp dried oregano',
+    }
+
+
+# Adds a recipe to recipesValid with its ingredients
+def addRecipe():
+    while True:
+        try:
+            newRecipe = str(input("Enter the name of a new recipe: "))
+        except ValueError:
+            print("Please enter a string")
+            continue
+        else:
+            if(newRecipe in recipesValid):
+                print("This recipe is already added.")
+                break
+            else:
+                if (newRecipe == ""):
+                    print("Recipe is unnamed.")
+                    break
+                recipesValid[newRecipe] = ""
+                while True:
+                    try:
+                        newRecipeIngredient = str(input("Enter an ingredient for this recipe (Type Finished if the recipe is finished): "))
+                    except ValueError:
+                        print("Please enter a string")
+                        continue
+                    else:
+                        if (newRecipeIngredient in recipesValid[newRecipe]):
+                            print("That ingredient is already in the recipe")
+                            continue
+                        elif (newRecipeIngredient == ""):
+                            continue
+                        elif (newRecipeIngredient == "Finished"):
+                            recipesValid[newRecipe] = recipesValid.get(newRecipe)[:-2]
+                            print(newRecipe + ": " + recipesValid[newRecipe])
+                            return    
+                        else:
+                            recipesValid[newRecipe] = recipesValid.get(newRecipe) + newRecipeIngredient + ", "
+                            continue
+
+# Finds recipes in recipe dictionary that have 50% or more of the ingredients from the preferred ingredients dictionary               
+def searchSimilarRecipe():
+    similar = 0
+    for recipes in recipesValid:
+        for n in range(0, len(preferencesList)):
+            if(preferencesList[n] in recipesValid[recipes]):
+                similar += 1
+        if(similar >= (recipesValid[recipes].count(',') + 1)/2):
+            print(recipes + " has " + str(similar) + " out of " + str(recipesValid[recipes].count(',') + 1) + " ingredients you like.") 
+            similar = 0
+    return
