@@ -406,10 +406,13 @@ def childAge(birthdate):
 
 import json
 
-weights = {}
-
 with open('weightsFile.json') as f:
-    weights = json.load(f)
+    if f.read() != "":
+        f.seek(0)
+        print(f.read())
+        weights = json.load(f)
+    else:
+        weights = {}
 
 def addWeight(age, weight):
     weights[age] = weight
