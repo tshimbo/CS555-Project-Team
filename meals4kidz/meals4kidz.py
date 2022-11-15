@@ -604,6 +604,49 @@ if __name__=='__main__':
     print("Running unit tests")
     unittest.main() 
 
+#______________________________________________________________________________________________________________
+#Sprint 3:
+#PratikKadam contribution
+#Storyname: Encryption
+#Task 1: Asked the user to create username and password
+#Task 2: Stored the credentials in a text file
+
+
+def registr():
+
+    db=open("database.txt","r")
+    Username=input("Create username:")
+    Password=input("Create password:")
+    Password1=input("Confirm password")
+    d=[]
+    f=[]
+    for i in db:
+        a,b=i.split(",")
+        b=b.strip()
+        d.append(a)
+        f.append(b)
+    data=dict(zip(d,f))
+    print(data)
+
+    if Password != Password1:
+        print("Passwords don't match, restart")
+        registr()
+    else:
+        if len(Password)<=6:
+            print("Password too short, restart")
+            registr()
+
+        else:
+            db=open("databas.txt","a")
+            db.write(Username+","+Password+"\n")
+            print("Success")
+
+registr()
+
+    
+def access():
+    pass
+
 
 #----------------------------------------------------------------------------------------------------------------------------
 #Michael Moreno
