@@ -16,7 +16,10 @@ import unittest
 #Task 2: make sure ingredient is valid 
 #Task 3: append to list of wanted ingredients
 
-
+#Sprint 4 Tasks
+#Task 1: make sure ingredient is valid (not a number)
+#Task 2: find recipes that match list
+#Task 3: add more ingredients
 #-------------------------------------------------------------------------------
 
 #Example dictionaries for testing purposes
@@ -134,7 +137,7 @@ def getPreference():
 def validIngredient(ingredient):
     valid = True
     if (ingredient in preferencesList):
-        print("You've already added this allergy")
+        print("You've already added this ingredient")
         valid = False
     return valid
 
@@ -178,7 +181,22 @@ def preferences():
             preferencesList.append(preference)
     return print("Here is a list of preferred ingredients for your child: " + str(preferencesList))
 
+# find recipe with those matching preferences
+def recipesMatchingPreference(preferencesList):
+    res = None
+    values = []
+    items = recipesValid.items()
+    for item in items:
+       values.append(item[1])
+        
+    # print("values : ", str(values))
 
+   
+    for sub in values:
+        if sub in values:
+            res = sub
+            break
+    return print("Here is a recipe that matches favorite ingredients : " + str(res))
 
 #------------------------------------------------------------------------------------------
 
