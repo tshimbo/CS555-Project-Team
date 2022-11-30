@@ -45,7 +45,8 @@ recipesInvalidIngredient = {
 
 
 ingredientList = ['avocado', 'eggs', 'fish', 'tomato',
-                   'peanuts', 'rice', 'spinach', 'broccoli']
+                   'peanuts', 'rice', 'spinach', 'broccoli', 'sugar', 'water', 'oil', 'salt', 'fat', 'pork', 'butter', 'apple', 'orange', 
+                   'bananas', 'vanilla', 'beef','coconuts', 'thyme'] 
 
 preferencesList = [] #list of preferences to append to
 
