@@ -450,6 +450,41 @@ def displayWeightHistory():
 with open('weightsFile.json', 'w') as f:
     json.dump(weights, f)
 
+#_____________________________________________________________
+
+# Sprint 4
+# Story Name: Track Growth (height)
+# Sprint 4 Task 1: Input the child's age
+# Sprint 4 Task 2: Input the child's height for each age in a dictionary
+# Sprint 4 Task 3: Save the data to be opened up later to see the childs height history
+
+#_____________________________________________________________
+
+with open('heightsFile.json') as f:
+    if f.read() != "":
+        f.seek(0)
+        print(f.read())
+        heights = json.load(f)
+    else:
+        heights = {}
+
+def addHeight(age, height):
+    heights[age] = height
+    return heights
+
+def clearHeight():
+    heights.clear()
+    open('heightsFile.json', 'w').close()
+
+def displayHeightHistory():
+    print("{:<10} {:<10}".format('Age', 'Height'))
+    for key, value in heights.items():
+        height = value
+        print("{:<10} {:<10}".format(key, height))
+
+with open('heightsFile.json', 'w') as f:
+    json.dump(heights, f)
+
 #--------------------------------------
 #Testing functions
 class Test(unittest.TestCase):
@@ -466,6 +501,13 @@ class Test(unittest.TestCase):
         print(addWeight(7, 90))
         print(addWeight(8, 100))
         displayWeightHistory()
+
+    def test_checkHeightHistory(self):
+        clearHeight()
+        print(addHeight(6, 48))
+        print(addHeight(7, 60))
+        print(addHeight(8, 72))
+        displayHeightHistory()
     
     def test_childAge(self):
         print("\n")
