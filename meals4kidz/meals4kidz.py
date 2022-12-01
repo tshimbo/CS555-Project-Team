@@ -1,80 +1,74 @@
-from secrets import choice
-from onetimepass import valid_totp
-import json
-from datetime import datetime, date
 import re
 import unittest
-# Terry Shim Contribution
-# Story Name:  View measurements
-# Task 1: Get measurements of recipe of a specific meal
-# Task 2: Print measurements of recipe
-# Task 3: Recipe meal cannot be a number
+#Terry Shim Contribution
+#Story Name:  View measurements
+#Task 1: Get measurements of recipe of a specific meal
+#Task 2: Print measurements of recipe
+#Task 3: Recipe meal cannot be a number
 
-# Sprint 2 Tasks
-# Task 4: Must be at least one ingredient per recipe
-# Task 5: Recipe must be valid string for ingredient (not a number)
-# Task 6: Must have at least one recipe
+#Sprint 2 Tasks
+#Task 4: Must be at least one ingredient per recipe
+#Task 5: Recipe must be valid string for ingredient (not a number)
+#Task 6: Must have at least one recipe
 
-# Sprint 3 Tasks
-# Task 1: ask user to choose specific ingredients for likes
-# Task 2: make sure ingredient is valid
-# Task 3: append to list of wanted ingredients
+#Sprint 3 Tasks
+#Task 1: ask user to choose specific ingredients for likes
+#Task 2: make sure ingredient is valid 
+#Task 3: append to list of wanted ingredients
 
-# Sprint 4 Tasks
-# Task 1: make sure ingredient is valid (not a number)
-# Task 2: find recipes that match list
-# Task 3: add more ingredients
-# -------------------------------------------------------------------------------
+#Sprint 4 Tasks
+#Task 1: make sure ingredient is valid (not a number)
+#Task 2: find recipes that match list
+#Task 3: add more ingredients
+#-------------------------------------------------------------------------------
 
-# Example dictionaries for testing purposes
+#Example dictionaries for testing purposes
 
 recipesValid = {
-    'Rice paper wraps': '1 carrot, 1 avocado, 1/2 cucumber, 8 mint leaves, 50 grams rice vermicelli noodles',
-    'Spinach savoury muffins': '200 g fresh spinach, 100g cheddar, 1 tbsp dried thyme, 2 eggs',
-    'Omelette': '1 knob of butter, 1 tomato deseeded and diced, 1 tsp dried oregano',
-}
+        'Rice paper wraps': '1 carrot, 1 avocado, 1/2 cucumber, 8 mint leaves, 50 grams rice vermicelli noodles',
+        'Spinach savoury muffins': '200 g fresh spinach, 100g cheddar, 1 tbsp dried thyme, 2 eggs',
+        'Omelette': '1 knob of butter, 1 tomato deseeded and diced, 1 tsp dried oregano',
+    }
 
 testRecipe = {
-    'Rice paper wraps': '1 carrot'
+        'Rice paper wraps': '1 carrot'
 }
 
 recipesInvalidEmptyCase = {
 }
 
 
-recipesInvalidNoIngredients = {
+recipesInvalidNoIngredients= {
     'Rice paper wraps'
 }
 
 recipesInvalidIngredient = {
-    'Rice paper wraps': 123
+       'Rice paper wraps': 123
 }
 
 
 ingredientList = ['avocado', 'eggs', 'fish', 'tomato',
-                  'peanuts', 'rice', 'spinach', 'broccoli', 'sugar', 'water', 'oil', 'salt', 'fat', 'pork', 'butter', 'apple', 'orange',
-                  'bananas', 'vanilla', 'beef', 'coconuts', 'thyme']
+                   'peanuts', 'rice', 'spinach', 'broccoli', 'sugar', 'water', 'oil', 'salt', 'fat', 'pork', 'butter', 'apple', 'orange', 
+                   'bananas', 'vanilla', 'beef','coconuts', 'thyme'] 
 
-preferencesList = []  # list of preferences to append to
-
-
-# ----------------------------------------------------------------------------------------------------
+preferencesList = [] #list of preferences to append to
 
 
-def checkValidMeal(meal):  # checking that a meal cannot be a number
+#----------------------------------------------------------------------------------------------------
+
+
+def checkValidMeal(meal): #checking that a meal cannot be a number
     if meal.isnumeric():
         return False
     else:
         return True
-
-
-def checkValidRecipe(recipes):  # checking that a recipe is valid
+def checkValidRecipe(recipes): #checking that a recipe is valid
     if len(recipes.values()) < 1:
         raise ValueError('Recipe must have at least one ingredient')
     if len(recipes.keys()) < 1:
-        raise KeyError('No recipes found')
+         raise KeyError('No recipes found')
     for ingredients in recipes.values():
-        if ingredients[0].isdigit():
+        if ingredients[0].isdigit() :
             return True
         else:
             return False
@@ -82,28 +76,27 @@ def checkValidRecipe(recipes):  # checking that a recipe is valid
         if isinstance(recipe[0], str):
             return True
         else:
-            return False
-
+            return False 
+        
     return True
+        
 
-
-# parse through a dictionary of recipes in order to find the measurements of the ingredients
-def measurementList(recipes, meal):
+def measurementList(recipes, meal): #parse through a dictionary of recipes in order to find the measurements of the ingredients
     try:
         # Iterating over values
-        assert checkValidMeal(meal) == True  # error checking
-        assert checkValidRecipe(recipes) == True
-        # specify which meal you are taking from
-        print('Measurements of: ' + str(meal) + '\n')
-        for meal, ingredient in recipes.items():  # iterate through the recipes to find the correct one
-
-            return print(ingredient)  # print only the measurement list
+        assert checkValidMeal(meal) == True   #error checking
+        assert checkValidRecipe(recipes) == True 
+        print('Measurements of: ' + str(meal) + '\n') #specify which meal you are taking from
+        for meal, ingredient in recipes.items():   #iterate through the recipes to find the correct one 
+           
+            
+            return print(ingredient)     #print only the measurement list
     except:
-        # error if the meal is a number
-        raise Exception("Meal cannot be a number!")
+        raise Exception("Meal cannot be a number!")   #error if the meal is a number
+        
 
 
-# -------------------Terry Shim Sprint 3---------------------------------------------------
+#-------------------Terry Shim Sprint 3---------------------------------------------------
 
 # ask user if child has favorite ingredients
 def hasFavorite():
@@ -128,13 +121,10 @@ def hasFavorite():
     return have
 
 # ask user to input ingredients preferences
-
-
 def getPreference():
     while True:
         try:
-            ingredients = str(
-                input("Enter your child's favorite ingredient: "))
+            ingredients = str(input("Enter your child's favorite ingredient: "))
         except ValueError:
             print("Please enter a string")
             continue
@@ -152,12 +142,12 @@ def validIngredient(ingredient):
     return valid
 
 
+
 # ask user if child has another favorite ingredient
 def moreIngredient():
     while True:
         try:
-            x = str(
-                input("Does your child have another favorite ingredient? (y/n): "))
+            x = str(input("Does your child have another favorite ingredient? (y/n): "))
         except ValueError:
             print("Please enter a string")
             continue
@@ -174,7 +164,7 @@ def moreIngredient():
     return another
 
 
-# get list of child's favorite ingredients
+# get list of child's favorite ingredients 
 def preferences():
     if not hasFavorite():
         return
@@ -192,24 +182,23 @@ def preferences():
     return print("Here is a list of preferred ingredients for your child: " + str(preferencesList))
 
 # find recipe with those matching preferences
-
-
 def recipesMatchingPreference(preferencesList):
     res = None
     values = []
     items = recipesValid.items()
     for item in items:
-        values.append(item[1])
-
+       values.append(item[1])
+        
     # print("values : ", str(values))
 
+   
     for sub in values:
         if sub in values:
             res = sub
             break
     return print("Here is a recipe that matches favorite ingredients : " + str(res))
 
-# ------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------
 
 
 #############################################################
@@ -230,12 +219,8 @@ def recipesMatchingPreference(preferencesList):
 # Task 1: Ask user to input medical information
 # Task 2: Get height
 # Task 3: Get weight
-#
-# Sprint #4:
-# Task 4: Ask user if they would like to use metric or imperial units
-# Task 5: Set range for height
-# Task 6: Set range for weight
 ##############################################################
+import unittest
 
 commonAllergies = ['dairy', 'eggs', 'fish', 'shellfish',
                    'tree nuts', 'peanuts', 'wheat', 'soy']
@@ -329,49 +314,15 @@ def allergies():
     return allergyList
 
 
-################### Ryan Lee Sprint 3/4 ########################
+################### Ryan Lee Sprint 3 ########################
 
 # ask user to input medical information
 def getMedInfo():
-    metric = getUnit()
-    if metric:
-        print("Please input your child's height (cm) and weight (kg) below:")
-        height = getHeight()
-        while not validHeight(height):
-            height = getHeight()
-        weight = getWeight()
-        while not validWeight(weight):
-            weight = getWeight()
-        print("Height: " + str(height) + " cm")
-        print("Weight: " + str(weight) + " kg")
-    else:
-        print("Please input your child's height (in) and weight (lb) below:")
-        height = getHeight()
-        cm = inToCM(height)
-        while not validHeight(cm):
-            height = getHeight()
-            cm = inToCM(height)
-        weight = getWeight()
-        kg = lbToKG(weight)
-        while not validWeight(kg):
-            weight = getWeight()
-            kg = lbToKG(weight)
-        print("Height: " + str(height) + " in")
-        print("Weight: " + str(weight) + " lb")
-
-
-# get height
-def getHeight():
-    while True:
-        try:
-            height = float(
-                (input("Enter your child's height: ")))
-        except ValueError:
-            print("Please enter a number")
-            continue
-        else:
-            break
-    return height
+    print("Please input your child's height and weight below:")
+    height = getHeight()
+    weight = getWeight()
+    print("Height: " + str(height))
+    print("Weight: " + str(weight))
 
 
 # get weight
@@ -388,57 +339,20 @@ def getWeight():
     return weight
 
 
-# get unit
-def getUnit():
+# get height
+def getHeight():
     while True:
         try:
-            x = str(
-                (input("Metric or imperial units ('m' for metric, 'i' for imperial): ")))
+            height = float(
+                (input("Enter your child's height: ")))
         except ValueError:
-            print("Please enter a string")
+            print("Please enter a number")
             continue
         else:
-            if (x == 'm'):
-                metric = True
-                break
-            elif (x == "i"):
-                metric = False
-                break
-            else:
-                print('Please enter m for metric or i for imperial.')
-                continue
-    return metric
+            break
+    return height
 
-
-# convert inches to centimeters
-def inToCM(inch):
-    return inch * 2.54
-
-
-# convert pounds to kilograms
-def lbToKG(lb):
-    return lb / 2.205
-
-
-# set range for height
-def validHeight(cm):
-    valid = True
-    if (cm < 45 or cm > 215):
-        print("Height out of range")
-        valid = False
-    return valid
-
-
-# set range for weight
-def validWeight(kg):
-    valid = True
-    if (kg < 2 or kg > 150):
-        print("Weight out of range")
-        valid = False
-    return valid
-
-
-# _____________________________________________________________
+#_____________________________________________________________
 
 # Maksym Perozhak Contribution
 
@@ -448,14 +362,14 @@ def validWeight(kg):
 # Sprint 1 Task 2: Identify if age of user old enough for app authorization
 # Sprint 1 Task 3: Identify if age of user is valid
 
-# _____________________________________________________________
+#_____________________________________________________________
 
-
+from datetime import datetime, date
+ 
 def checkValidUserAge(birthdate):
     today = date.today()
     #birthdate = datetime.fromisoformat(input("Enter Your Birthdate in YYYY-MM-DD Format: "))
-    age = today.year - birthdate.year - \
-        ((today.month, today.day) < (birthdate.month, birthdate.day))
+    age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
     if age >= 18:
         return ("User Age Verified!")
     elif age < 18 and age > 0:
@@ -465,7 +379,7 @@ def checkValidUserAge(birthdate):
     else:
         return ("Please Enter Your Birthdate in YYYY-MM-DD Format")
 
-# _____________________________________________________________
+#_____________________________________________________________
 
 # Sprint 2
 # Story Name: Choose Age
@@ -473,34 +387,32 @@ def checkValidUserAge(birthdate):
 # Sprint 2 Task 2: Identify what age range category diet the child belongs to
 # Sprint 2 Task 3: Identify if age of the child is valid
 
-# _____________________________________________________________
-
+#_____________________________________________________________
 
 def childAge(birthdate):
     dietRange = ""
     today = date.today()
     #birthdate = datetime.fromisoformat(input("Enter Your Birthdate in YYYY-MM-DD Format: "))
-    age = today.year - birthdate.year - \
-        ((today.month, today.day) < (birthdate.month, birthdate.day))
+    age = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
     if age < 1:
         dietRange = "baby"
-        return ("Your child is less than a year old \n Reccomended Diet For: Baby")
+        return("Your child is less than a year old \n Reccomended Diet For: Baby")
     elif age < 4 and age >= 1:
         dietRange = "toddler"
-        return ("Your child is " + str(age) + " years old \n Reccomended Diet For: Toddler")
+        return("Your child is " + str(age) + " years old \n Reccomended Diet For: Toddler")
     elif age < 12 and age >= 4:
         dietRange = "young"
         return ("Your child is " + str(age) + " years old \n Reccomended Diet For: Young Child")
     elif age < 18 and age >= 12:
         dietRange = "teen"
-        return ("Your child is " + str(age) + " years old \n Reccomended Diet For: Teen")
+        return("Your child is " + str(age) + " years old \n Reccomended Diet For: Teen")
     elif age >= 18:
         dietRange = "adult"
         return ("Your child is 18 years old or older and should be considered for adult diets")
     else:
         return ("Please Enter Your Birthdate in YYYY-MM-DD Format")
 
-# _____________________________________________________________
+#_____________________________________________________________
 
 # Sprint 3
 # Story Name: Track Growth
@@ -508,8 +420,10 @@ def childAge(birthdate):
 # Sprint 3 Task 2: Input the child's weight for each age in a dictionary
 # Sprint 3 Task 3: Save the data to be opened up later to see the childs weight history
 
-# _____________________________________________________________
+#_____________________________________________________________
 
+
+import json
 
 with open('weightsFile.json') as f:
     if f.read() != "":
@@ -519,16 +433,13 @@ with open('weightsFile.json') as f:
     else:
         weights = {}
 
-
 def addWeight(age, weight):
     weights[age] = weight
     return weights
 
-
 def clearWeight():
     weights.clear()
     open('weightsFile.json', 'w').close()
-
 
 def displayWeightHistory():
     print("{:<10} {:<10}".format('Age', 'Weight'))
@@ -536,14 +447,11 @@ def displayWeightHistory():
         weight = value
         print("{:<10} {:<10}".format(key, weight))
 
-
 with open('weightsFile.json', 'w') as f:
     json.dump(weights, f)
 
-# --------------------------------------
-# Testing functions
-
-
+#--------------------------------------
+#Testing functions
 class Test(unittest.TestCase):
     def test_checkValidUserAge(self):
         print("\n")
@@ -558,7 +466,7 @@ class Test(unittest.TestCase):
         print(addWeight(7, 90))
         print(addWeight(8, 100))
         displayWeightHistory()
-
+    
     def test_childAge(self):
         print("\n")
         print(childAge(date(2002, 1, 1)))
@@ -571,18 +479,18 @@ class Test(unittest.TestCase):
     def test_checkValidMeal(self):
         self.assertTrue(checkValidMeal('omelette'), 'omelette')
         self.assertFalse(checkValidMeal('123'), '123')
-
+    
     def test_checkValidRecipe(self):
         self.assertTrue(checkValidRecipe(recipesValid))
         with self.assertRaises(ValueError):
             checkValidRecipe(recipesInvalidEmptyCase)
-        with self.assertRaises(AttributeError):
+        with self.assertRaises(AttributeError):   
             checkValidRecipe(recipesInvalidNoIngredients)
         with self.assertRaises(TypeError):
             checkValidRecipe(recipesInvalidIngredient)
-
+        
     def test_measurementList(self):
-        self.assertFalse(measurementList(recipesValid, 'Omelette'), "432")
+        self.assertFalse(measurementList(recipesValid,'Omelette'), "432")
 
     def test_validAllergy(self):
         self.assertTrue(validAllergy("fish"), "fish")
@@ -602,46 +510,45 @@ class Test(unittest.TestCase):
 if __name__ == '__main__':
     unittest.main()
 
-# _______________________________________________________________________________________________
+#_______________________________________________________________________________________________
 
-# Sprint 1
-# Pratik Kadam contribution
-# Story name: Find recipes
-# Task 1 : Define the dishes
-# Task 2: Define the ingredients of the respective dishes
-# Task 3: Ask the user to choose their desired dish
+import unittest
+#Sprint 1
+#Pratik Kadam contribution
+#Story name: Find recipes
+#Task 1 : Define the dishes
+#Task 2: Define the ingredients of the respective dishes
+#Task 3: Ask the user to choose their desired dish
 
-dishes = ['chicken', 'oatmeal', 'bagel', 'omlette', 'breadtoast']
-chicken = ['salt', 'pepper', 'chicken breast']
-oatmeal = ['oats', 'milk', 'berries', 'nuts', 'fruits']
-bagel = ['bagel', 'creamcheese']
-omlette = ['eggs', 'salt', 'tomato', 'oregano']
-breadtoast = ['bread', 'butter']
-
+dishes=['chicken','oatmeal','bagel','omlette','breadtoast']
+chicken=['salt','pepper','chicken breast']
+oatmeal=['oats','milk','berries','nuts','fruits']
+bagel=['bagel','creamcheese']
+omlette=['eggs','salt','tomato','oregano']
+breadtoast=['bread','butter']
 
 def validRecipes():
     while True:
         try:
             print(f"{dishes}")
-            # taking input from user for the choice of dish
-            x = str(input("Select the dish of your choice: "))
+            x= str(input("Select the dish of your choice: ")) #taking input from user for the choice of dish
         except ValueError:
             print("Please enter a string")
             continue
         else:
-            if (x == 'chicken'):
+            if(x=='chicken'):
                 print(f"{chicken}")
                 break
-            elif (x == 'oatmeal'):
+            elif(x=='oatmeal'):
                 print(f"{oatmeal}")
                 break
-            elif (x == 'bagel'):
+            elif(x=='bagel'):
                 print(f"{bagel}")
                 break
-            elif (x == 'omlette'):
+            elif(x=='omlette'):
                 print(f"{omlette}")
                 break
-            elif (x == 'breadtoast'):
+            elif(x=='breadtoast'):
                 print(f"{breadtoast}")
                 break
             else:
@@ -649,9 +556,7 @@ def validRecipes():
                 continue
     return validRecipes
 
-
 validRecipes()
-
 
 class Test(unittest.TestCase):
 
@@ -663,52 +568,50 @@ class Test(unittest.TestCase):
         self.assertTrue(validRecipes('breadtoast'), 'breadtoast')
         self.assertFalse(validRecipes('123'), '123')
 
-
-if __name__ == '__main__':
+if __name__=='__main__':
     unittest.main()
 
-# ____________________________________________________________________________________________________________________________
-# Sprint 2
-# Pratik Kadam contribution
-# Story name : Encryption
-# Task 1: Ask the user to create username and password.
-# Task 2: Ask the user to enter the created username and password for login.
-# Task 3: To check if the entered credentials match and display the recipes.
+#____________________________________________________________________________________________________________________________
+#Sprint 2
+#Pratik Kadam contribution
+#Story name : Encryption
+#Task 1: Ask the user to create username and password.
+#Task 2: Ask the user to enter the created username and password for login.
+#Task 3: To check if the entered credentials match and display the recipes.
 
+import unittest
 
 def register():
-    Username = str(input("Create username: "))
-    Password = str(input("Create password: "))
-    Password1 = str(input("Confirm password: "))
+    Username=str(input("Create username: "))
+    Password=str(input("Create password: "))
+    Password1=str(input("Confirm password: "))
 
     if Password != Password1:
         print("Password donot match, please retry")
         register()
     else:
-        if len(Password) <= 10 or len(Password) >= 16:
+        if len(Password)<=10 or len(Password)>=16:
             print("Password not in range, please restart")
             register()
-        elif len(Username) <= 5 or len(Username) >= 11:
+        elif len(Username)<=5 or len(Username)>=11:
             print("Username not in range, please restart")
-            register()
+            register() 
         else:
             print("Success!")
-            creddict = {"Username": Username, "Password": Password}
-
+            creddict={"Username":Username, "Password":Password}
+            
             def login():
-                Username1 = str(input("Enter username:"))
-                Password2 = str(input("Enter password:"))
-                if Username1 != Username or Password2 != Password:
+                Username1=str(input("Enter username:"))
+                Password2=str(input("Enter password:"))
+                if Username1!=Username or Password2!=Password:
                     print("Wrong credentials, retry")
                     login()
-                elif Username1 == Username and Password2 == Password:
+                elif Username1==Username and Password2==Password:
                     print("Logging in!")
                     from recipes import validRecipes
             login()
 
-
 register()
-
 
 class Test(unittest.TestCase):
 
@@ -716,78 +619,77 @@ class Test(unittest.TestCase):
         self.assertEqual(register(''), 'Empty')
         self.assertEqual(register('Happyhalloween2022'), 'Out of range')
 
-
-if __name__ == '__main__':
+if __name__=='__main__':
     print("Running unit tests")
-    unittest.main()
+    unittest.main() 
 
-# ______________________________________________________________________________________________________________
-# Sprint 3:
-# PratikKadam contribution
+#______________________________________________________________________________________________________________
+#Sprint 3:
+#PratikKadam contribution
 #Storyname: Encryption
-# Task 1: Asked the user to create username and password
-# Task 2: Stored the credentials in a text file
+#Task 1: Asked the user to create username and password
+#Task 2: Stored the credentials in a text file
 
 
 def registr():
 
-    db = open("database.txt", "r")
-    Username = input("Create username:")
-    Password = input("Create password:")
-    Password1 = input("Confirm password")
-    d = []
-    f = []
+    db=open("database.txt","r")
+    Username=input("Create username:")
+    Password=input("Create password:")
+    Password1=input("Confirm password")
+    d=[]
+    f=[]
     for i in db:
-        a, b = i.split(",")
-        b = b.strip()
+        a,b=i.split(",")
+        b=b.strip()
         d.append(a)
         f.append(b)
-    data = dict(zip(d, f))
+    data=dict(zip(d,f))
     print(data)
 
     if Password != Password1:
         print("Passwords don't match, restart")
         registr()
     else:
-        if len(Password) <= 6:
+        if len(Password)<=6:
             print("Password too short, restart")
             registr()
 
         else:
-            db = open("databas.txt", "a")
+            db=open("databas.txt","a")
             db.write(Username+","+Password+"\n")
             print("Success")
 
-
 registr()
 
-
+    
 def access():
     pass
 
 
-# ----------------------------------------------------------------------------------------------------------------------------
-# Michael Moreno
-# Story Name: Nutrition facts
+#----------------------------------------------------------------------------------------------------------------------------
+#Michael Moreno
+#Story Name: Nutrition facts
 
-# Task 1: Define the dish
-# Task 2: retrieve ingredient list and assign caloric values to ingredients
-# Task 3: calculate total calories as sum of ingredients
+#Task 1: Define the dish
+#Task 2: retrieve ingredient list and assign caloric values to ingredients
+#Task 3: calculate total calories as sum of ingredients
+import unittest
 
-# Sprint 2
-# Task 1: display list of recipes instead of asking for input
-# Task 2: add more recipes
-# Task 3: make sure a valid dish is entered
+#Sprint 2
+#Task 1: display list of recipes instead of asking for input
+#Task 2: add more recipes
+#Task 3: make sure a valid dish is entered
 
-# This portion requires onetimepass package in python, install using 'pip install onetimepass' in command window to avoid issues when running code
-# Sprint 3: 2FA
-# Task 1: Instruct user to download microsoft authenticator or authy
-# Task 2: Display secret key so user can connect their app to their account
-# Task 3: Authenticate and connect their account
+#This portion requires onetimepass package in python, install using 'pip install onetimepass' in command window to avoid issues when running code
+#Sprint 3: 2FA
+#Task 1: Instruct user to download microsoft authenticator or authy
+#Task 2: Display secret key so user can connect their app to their account
+#Task 3: Authenticate and connect their account
 
-# define dish
-# retrieve ingredient list and assign caloric values to ingredients
-# arbitrary values for ingredients
+#define dish
+#retrieve ingredient list and assign caloric values to ingredients
+#arbitrary values for ingredients
 recipe_list = ['oatmeal', 'parfait', 'acai', 'pancakes', 'waffles', 'omelette']
 
 oatmeal = {
@@ -809,20 +711,20 @@ acai = {
     'blueberries': 150,
     'granola': 100,
     'kiwi': 100
-}
+    }
 
 pancakes = {
     'pancakes': 400,
     'syrup': 150,
     'bananas': 100
-}
+    }
 
 waffles = {
     'waffles': 400,
     'syrup': 150,
     'sugar': 200,
     'strawberries': 200
-}
+    }
 
 omelette = {
     'eggs': 500,
@@ -830,46 +732,43 @@ omelette = {
     'ham': 300,
     'salt': 100,
     'pepper': 100,
-}
+    }
 
-# calculate calorie total by adding caloric values of ingredients
-
-
+#calculate calorie total by adding caloric values of ingredients
 def CalcCals():
     print(recipe_list)
     while True:
-        try:
-            recipe = str(input("Please choose a recipe from the list: "))
+        try:recipe= str(input("Please choose a recipe from the list: "))
         except ValueError:
             print("Please enter a string")
             continue
         else:
-            if recipe == 'oatmeal':
+            if recipe=='oatmeal':
                 print(sum(oatmeal.values()), 'Calories')
                 break
-            elif recipe == 'parfait':
+            elif recipe=='parfait':
                 print(sum(parfait.values()), 'Calories')
                 break
-            elif recipe == 'acai':
+            elif recipe=='acai':
                 print(sum(acai.values()), 'Calories')
                 break
-            elif recipe == 'pancakes':
+            elif recipe=='pancakes':
                 print(sum(pancakes.values()), 'Calories')
                 break
-            elif recipe == 'waffles':
+            elif recipe=='waffles':
                 print(sum(waffles.values()), 'Calories')
                 break
-            elif recipe == 'omelette':
+            elif recipe=='omelette':
                 print(sum(omelette.values()), 'Calories')
                 break
-            else:
-                print('please enter a valid dish.')
+            else: print('please enter a valid dish.')
             continue
-
 
 CalcCals()
 
-# Sprint 3
+#Sprint 3
+from onetimepass import valid_totp
+from secrets import choice
 
 
 def generate_key():  # Function to return a random string with length 16.
@@ -877,7 +776,6 @@ def generate_key():  # Function to return a random string with length 16.
     while len(key) < 16:
         key += choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ234567')
     return key
-
 
 def validate_key():
     key = generate_key()
@@ -891,8 +789,7 @@ def validate_key():
     5. Click Add.
     """)
     while True:
-        otp = int(
-            input('Please enter the otp generated by your authenticator app: '))
+        otp = int(input('Please enter the otp generated by your authenticator app: '))
         authenticated = valid_totp(otp, key)
         if authenticated:
             print('Correct otp, Authenticated!')
@@ -900,7 +797,6 @@ def validate_key():
         elif not authenticated:
             print('Wrong otp, please try again.')
     return
-
 
 validate_key()
 
@@ -911,31 +807,30 @@ class Test(unittest.TestCase):
         self.assertEqual(CalcCals, 950)
         self.assertEqual(CalcCals, 1000)
         self.assertEqual(CalcCals, 0)
-
-
+       
 if __name__ == '__main__':
     unittest.main()
 
-# ----------------------------------------------------------------------------------------------------------------------------
-# Kevin Liao Contribution
-# Story Name: Recipe Preferences
-# Sprint 3 Tasks
-# Task 1: Allow users to save recipes
-# Task 2: Find if the saved recipes contain preferred ingredients
-# Task 3: Print recipes which have half of their ingredients as preferred ingredients
+#----------------------------------------------------------------------------------------------------------------------------
+#Kevin Liao Contribution
+#Story Name: Recipe Preferences
+#Sprint 3 Tasks
+#Task 1: Allow users to save recipes
+#Task 2: Find if the saved recipes contain preferred ingredients
+#Task 3: Print recipes which have half of their ingredients as preferred ingredients
 
+import unittest
 
 ingredientList = ['avocado', 'eggs', 'fish', 'tomato',
-                  'peanuts', 'rice', 'spinach', 'broccoli']
+                   'peanuts', 'rice', 'spinach', 'broccoli']
 
-preferencesList = ["carrot", "avocado", "cucumber",
-                   "mint leaves", "spinach", "cheddar"]
+preferencesList = ["carrot", "avocado", "cucumber", "mint leaves", "spinach", "cheddar"]
 
 recipesValid = {
-    'Rice paper wraps': '1 carrot, 1 avocado, 1/2 cucumber, 8 mint leaves, 50 grams rice vermicelli noodles',
-    'Spinach savoury muffins': '200 g fresh spinach, 100g cheddar, 1 tbsp dried thyme, 2 eggs',
-    'Omelette': '1 knob of butter, 1 tomato deseeded and diced, 1 tsp dried oregano',
-}
+        'Rice paper wraps': '1 carrot, 1 avocado, 1/2 cucumber, 8 mint leaves, 50 grams rice vermicelli noodles',
+        'Spinach savoury muffins': '200 g fresh spinach, 100g cheddar, 1 tbsp dried thyme, 2 eggs',
+        'Omelette': '1 knob of butter, 1 tomato deseeded and diced, 1 tsp dried oregano',
+    }
 
 
 # Adds a recipe to recipesValid with its ingredients
@@ -947,7 +842,7 @@ def addRecipe():
             print("Please enter a string")
             continue
         else:
-            if (newRecipe in recipesValid):
+            if(newRecipe in recipesValid):
                 print("This recipe is already added.")
                 break
             else:
@@ -957,8 +852,7 @@ def addRecipe():
                 recipesValid[newRecipe] = ""
                 while True:
                     try:
-                        newRecipeIngredient = str(input(
-                            "Enter an ingredient for this recipe (Type Finished if the recipe is finished): "))
+                        newRecipeIngredient = str(input("Enter an ingredient for this recipe (Type Finished if the recipe is finished): "))
                     except ValueError:
                         print("Please enter a string")
                         continue
@@ -969,26 +863,21 @@ def addRecipe():
                         elif (newRecipeIngredient == ""):
                             continue
                         elif (newRecipeIngredient == "Finished"):
-                            recipesValid[newRecipe] = recipesValid.get(newRecipe)[
-                                :-2]
+                            recipesValid[newRecipe] = recipesValid.get(newRecipe)[:-2]
                             print(newRecipe + ": " + recipesValid[newRecipe])
-                            return
+                            return    
                         else:
-                            recipesValid[newRecipe] = recipesValid.get(
-                                newRecipe) + newRecipeIngredient + ", "
+                            recipesValid[newRecipe] = recipesValid.get(newRecipe) + newRecipeIngredient + ", "
                             continue
 
-# Finds recipes in recipe dictionary that have 50% or more of the ingredients from the preferred ingredients dictionary
-
-
+# Finds recipes in recipe dictionary that have 50% or more of the ingredients from the preferred ingredients dictionary               
 def searchSimilarRecipe():
     similar = 0
     for recipes in recipesValid:
         for n in range(0, len(preferencesList)):
-            if (preferencesList[n] in recipesValid[recipes]):
+            if(preferencesList[n] in recipesValid[recipes]):
                 similar += 1
-        if (similar >= (recipesValid[recipes].count(',') + 1)/2):
-            print(recipes + " has " + str(similar) + " out of " +
-                  str(recipesValid[recipes].count(',') + 1) + " ingredients you like.")
+        if(similar >= (recipesValid[recipes].count(',') + 1)/2):
+            print(recipes + " has " + str(similar) + " out of " + str(recipesValid[recipes].count(',') + 1) + " ingredients you like.") 
             similar = 0
     return
