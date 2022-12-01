@@ -219,6 +219,11 @@ def recipesMatchingPreference(preferencesList):
 # Task 1: Ask user to input medical information
 # Task 2: Get height
 # Task 3: Get weight
+#
+# Sprint #4:
+# Task 4: Ask user if they would like to use metric or imperial units
+# Task 5: Set range for height
+# Task 6: Set range for weight
 ##############################################################
 import unittest
 
@@ -314,15 +319,49 @@ def allergies():
     return allergyList
 
 
-################### Ryan Lee Sprint 3 ########################
+################### Ryan Lee Sprint 3/4 ########################
 
 # ask user to input medical information
 def getMedInfo():
-    print("Please input your child's height and weight below:")
-    height = getHeight()
-    weight = getWeight()
-    print("Height: " + str(height))
-    print("Weight: " + str(weight))
+    metric = getUnit()
+    if metric:
+        print("Please input your child's height (cm) and weight (kg) below:")
+        height = getHeight()
+        while not validHeight(height):
+            height = getHeight()
+        weight = getWeight()
+        while not validWeight(weight):
+            weight = getWeight()
+        print("Height: " + str(height) + " cm")
+        print("Weight: " + str(weight) + " kg")
+    else:
+        print("Please input your child's height (in) and weight (lb) below:")
+        height = getHeight()
+        cm = inToCM(height)
+        while not validHeight(cm):
+            height = getHeight()
+            cm = inToCM(height)
+        weight = getWeight()
+        kg = lbToKG(weight)
+        while not validWeight(kg):
+            weight = getWeight()
+            kg = lbToKG(weight)
+        print("Height: " + str(height) + " in")
+        print("Weight: " + str(weight) + " lb")
+
+
+# get height
+def getHeight():
+    while True:
+        try:
+            height = float(
+                (input("Enter your child's height: ")))
+        except ValueError:
+            print("Please enter a number")
+            continue
+        else:
+            break
+    return height
 
 
 # get weight
@@ -339,18 +378,54 @@ def getWeight():
     return weight
 
 
-# get height
-def getHeight():
+# get unit
+def getUnit():
     while True:
         try:
-            height = float(
-                (input("Enter your child's height: ")))
+            x = str(
+                (input("Metric or imperial units ('m' for metric, 'i' for imperial): ")))
         except ValueError:
-            print("Please enter a number")
+            print("Please enter a string")
             continue
         else:
-            break
-    return height
+            if (x == 'm'):
+                metric = True
+                break
+            elif (x == "i"):
+                metric = False
+                break
+            else:
+                print('Please enter m for metric or i for imperial.')
+                continue
+    return metric
+
+
+# convert inches to centimeters
+def inToCM(inch):
+    return inch * 2.54
+
+
+# convert pounds to kilograms
+def lbToKG(lb):
+    return lb / 2.205
+
+
+# set range for height
+def validHeight(cm):
+    valid = True
+    if (cm < 45 or cm > 215):
+        print("Height out of range")
+        valid = False
+    return valid
+
+
+# set range for weight
+def validWeight(kg):
+    valid = True
+    if (kg < 2 or kg > 150):
+        print("Weight out of range")
+        valid = False
+    return valid
 
 #_____________________________________________________________
 
