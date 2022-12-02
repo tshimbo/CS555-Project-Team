@@ -783,7 +783,48 @@ registr()
 def access():
     pass
 
+#-----------------------------------------------------------------------------------------------------------------------------------
+#Sprint 4:
+#Pratik Kadam contribution:
+#Storyname: Encryption
+#Task 1: Hashing of stored from user database
+#Task 2: Checking if the plain text password matches with hashed password
+#Task 3: Increasing the work factor to slow down hashing and vice versa
 
+import bcrypt
+password=b"hellounitedstatesofamerica"
+hashed=bcrypt.hashpw(password, bcrypt.gensalt())
+print(hashed)
+"""b'$2b$12$XqDv65ssdxPCy8PBKoOYUuza/oblze2.kn7i/e7qDmBC3aWhMVL.q"""
+#---------------------------------------
+import bcrypt
+password=b"hellounitedstatesofamerica"
+"""hashed=bcrypt.hashpw(password, bcrypt.gensalt())"""
+#print(hashed)
+"""b'$2b$12$XqDv65ssdxPCy8PBKoOYUuza/oblze2.kn7i/e7qDmBC3aWhMVL.q"""
+if bcrypt.checkpw(password,hashed):
+    print("Password matches")
+else:
+    print("Password doesn't match")
+#---------------------------------------
+import bcrypt
+password=b"hellounitedstatesofamerica"
+import time 
+start=time.time()
+hashed=bcrypt.hashpw(password, bcrypt.gensalt())
+end=time.time()
+f= end-start
+print(f)
+#--------------------------------------------
+import bcrypt
+password=b"hellounitedstatesofamerica"
+import time 
+start=time.time()
+hashed=bcrypt.hashpw(password, bcrypt.gensalt(rounds=20))
+end=time.time()
+f= end-start
+print(f)
+#-----------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------------------
 #Michael Moreno
 #Story Name: Nutrition facts
