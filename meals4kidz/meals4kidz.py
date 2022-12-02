@@ -946,7 +946,7 @@ def addRecipe():
                             continue
 
 # Finds recipes in recipe dictionary that have 50% or more of the ingredients from the preferred ingredients dictionary               
-def searchSimilarRecipe():
+def searchPreferenceRecipe():
     similar = 0
     for recipes in recipesValid:
         for n in range(0, len(preferencesList)):
@@ -956,3 +956,5 @@ def searchSimilarRecipe():
             print(recipes + " has " + str(similar) + " out of " + str(recipesValid[recipes].count(',') + 1) + " ingredients you like.") 
             similar = 0
     return
+
+
