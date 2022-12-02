@@ -944,9 +944,9 @@ ingredientList = ['avocado', 'eggs', 'fish', 'tomato',
 preferencesList = ["carrot", "avocado", "cucumber", "mint leaves", "spinach", "cheddar"]
 
 recipesValid = {
-        'Rice paper wraps': '1 carrot, 1 avocado, 1/2 cucumber, 8 mint leaves, 50 grams rice vermicelli noodles',
-        'Spinach savoury muffins': '200 g fresh spinach, 100g cheddar, 1 tbsp dried thyme, 2 eggs',
-        'Omelette': '1 knob of butter, 1 tomato deseeded and diced, 1 tsp dried oregano',
+        'rice paper wraps': '1 carrot, 1 avocado, 1/2 cucumber, 8 mint leaves, 50 grams rice vermicelli noodles',
+        'spinach savoury muffins': '200 g fresh spinach, 100g cheddar, 1 tbsp dried thyme, 2 eggs',
+        'omelette': '1 knob of butter, 1 tomato deseeded and diced, 1 tsp dried oregano',
     }
 
 
@@ -998,5 +998,57 @@ def searchPreferenceRecipe():
             print(recipes + " has " + str(similar) + " out of " + str(recipesValid[recipes].count(',') + 1) + " ingredients you like.") 
             similar = 0
     return
+
+
+#----------------------------------------------------------------------------------------------------------------------------
+#Sprint 4 Tasks
+#Task 1: Get user input for a recipe they like
+#Task 2: Get user to input ingredients of that recipe they like
+#Task 3: Add those liked ingredients to the ingredients preference list
+
+# Finds recipes in recipe dictionary that is similar to another dictionary (shares 50% of ingredients)
+def favIngredientsOfRecipe():
+    while True:
+        try:
+            typeRecipe = str(input("Which recipe do you want to select?: ")).casefold()
+        except ValueError:
+            print("Please enter a string")
+            continue
+        else:
+            if(typeRecipe not in recipesValid):
+                print("This recipe is is not added.")
+                break
+            else:
+                if (typeRecipe == ""):
+                    print("Recipe is unnamed.")
+                    break
+                print(typeRecipe + ": " + recipesValid[typeRecipe])
+                while True:
+                    try:
+                        # typeRecipe = "Rice paper wraps"
+                        typeRecipeIngredient = str(input("What ingredients of this recipe do you like? (Type Finished if finished): ")).casefold()
+                    except ValueError:
+                        print("Please enter a string")
+                        continue
+                    else:
+                        if (typeRecipeIngredient == "finished"):
+                            # recipesValid[typeRecipe] = recipesValid.get(typeRecipe)[:-2]
+                            # print(typeRecipe + ": " + recipesValid[typeRecipe])
+                            print("The current preferences list:")
+                            print(preferencesList)
+                            return
+                        elif (typeRecipeIngredient not in recipesValid[typeRecipe].casefold()):
+                            print("That ingredient is not in the recipe")
+                            continue
+                        elif (typeRecipeIngredient in preferencesList):
+                            print("This ingredient is already in the preferences list")
+                            continue
+                        elif (typeRecipeIngredient == ""):
+                            continue  
+                        else:
+                            preferencesList.append(typeRecipeIngredient)
+                            continue
+    
+# favIngredientsOfRecipe()
 
 
